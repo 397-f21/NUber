@@ -49,7 +49,7 @@ const App = () => {
         <h1>NUber</h1>
         <h2>Enter in your arrival time:</h2>
         <input type="time" onChange={(e) => changeHandler(e)} />
-        <h2>Potential Wildcats to Ride-Share:</h2>
+        <h2>Potential Wildcats to Ride-Share with:</h2>
         <ul>
           <PeopleList time={time} timeList={timeList} />
         </ul>
