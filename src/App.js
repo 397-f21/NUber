@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
-import { useData } from './utilities/firebase.js';
+import { getDatabase, onValue, ref, set } from 'firebase/database';
+import { database, useData } from './utilities/firebase.js';
 
 const PeopleList = ({ time, timeList }) => {
   return (
@@ -36,9 +37,20 @@ const App = () => {
     "23:00": []
   }
 
+
+
   const [time, setTime] = useState(new Date());
   const [date, setDate] = useState(new Date());
+  const [dummy, setDummy] = useState();
 
+  
+  useEffect(() => {
+    const dbRef = ref(database);
+    onValue(dbRef, (snapshot) => {
+      const poop = snapshot.val();
+      setDummy(poop);
+    });
+  }, []);
 
   const changeTimeHandler = (e) => {
     setTime(e.target.value);
@@ -47,6 +59,8 @@ const App = () => {
   const changeDateHandler = (e) => {
     setDate(e.target.value);
   }
+
+  console.log(dummy);
 
   return (
     <div className="App">
