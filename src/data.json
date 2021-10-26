@@ -1,25 +1,22 @@
 {
-    "people" : {
-        "Alex" : {
-        "id" : 1,
-        "date" : "11-01-2021",
-        "time" : "10:59",
-        "airport" : "ORD",
-        "seconds" : 100
+    "11-01-2021" : {
+        "10:59" : {
+            "1": {
+                "name": "Alex",
+                "airport": "ORD"
+            }
         },
-        "Yufei" : {
-            "id" : 2,
-            "date" : "11-01-2021",
-            "time" : "11:59",
-            "airport" : "ORD",
-            "seconds" : 200
+        "11:59" : {
+            "1": {
+                "name": "Yufei",
+                "airport": "ORD"
+            }
         },
-        "Michael" : {
-            "id" : 3,
-            "date" : "11-01-2021",
-            "time" : "12:59",
-            "airport" : "ORD",
-            "seconds" : 300
+        "12:59" : {
+            "1" : {
+                "name": "Michael",
+                "airport": "MDW"
+            }
         }
     }
 }
