@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
+import { useData } from './utilities/firebase.js';
 
 const PeopleList = ({ time, timeList }) => {
   return (
@@ -36,19 +37,24 @@ const App = () => {
   }
 
   const [time, setTime] = useState(new Date());
+  const [date, setDate] = useState(new Date());
 
-  const changeHandler = (e) => {
+
+  const changeTimeHandler = (e) => {
     setTime(e.target.value);
   }
 
-  
+  const changeDateHandler = (e) => {
+    setDate(e.target.value);
+  }
 
   return (
     <div className="App">
       <header className="App-header">
         <h1>NUber</h1>
-        <h2>Enter in your arrival time:</h2>
-        <input type="time" onChange={(e) => changeHandler(e)} />
+        <h2>Enter in your arrival date and time:</h2>
+        <input type="time" onChange={(e) => changeTimeHandler(e)} />
+        <input type="date" onChange={(e) => changeDateHandler(e)} />
         <h2>Potential Wildcats to Ride-Share with:</h2>
         <ul>
           <PeopleList time={time} timeList={timeList} />

@@ -1,0 +1,25 @@
+{
+    "people" : {
+        "Alex" : {
+        "id" : 1,
+        "date" : "11-01-2021",
+        "time" : "10:59",
+        "airport" : "ORD",
+        "seconds" : 100
+        },
+        "Yufei" : {
+            "id" : 2,
+            "date" : "11-01-2021",
+            "time" : "11:59",
+            "airport" : "ORD",
+            "seconds" : 200
+        },
+        "Michael" : {
+            "id" : 3,
+            "date" : "11-01-2021",
+            "time" : "12:59",
+            "airport" : "ORD",
+            "seconds" : 300
+        }
+    }
+}
