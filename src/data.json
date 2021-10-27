@@ -1,22 +1,39 @@
 {
-    "11-01-2021" : {
-        "10:59" : {
-            "1": {
-                "name": "Alex",
-                "airport": "ORD"
-            }
+    "wildcats" : {
+        "agp101" : {
+            "netid" : "agp101",
+            "date" : "2021-11-01",
+            "arrival" : "10:55:05",
+            "name" : "Alex",
+            "email" : "alexgold@gmail.com"
         },
-        "11:59" : {
-            "1": {
-                "name": "Yufei",
-                "airport": "ORD"
-            }
+        "bxc214" : {
+            "netid" : "bxc214",
+            "date" : "2021-11-01",
+            "arrival" : "11:30",
+            "name" : "Ben",
+            "email" : "benbenben@northwestern.edu"
         },
-        "12:59" : {
-            "1" : {
-                "name": "Michael",
-                "airport": "MDW"
-            }
+        "ywi789" : {
+            "netid" : "ywi789",
+            "date" : "2021-11-03",
+            "arrival" : "14:00",
+            "name" : "Yani",
+            "email" : "begold@yeah.net"
+        },
+        "msk613" : {
+            "netid" : "msk613",
+            "date" : "2021-11-03",
+            "arrival" : "15:05",
+            "name" : "Michael",
+            "email" : "michl2021@gmail.com"
+        },
+        "ylm540" : {
+            "netid" : "ylm540",
+            "date" : "2021-11-03",
+            "arrival" : "15:50",
+            "name" : "Yufei",
+            "email" : "lyf007@yahoo.com"
         }
     }
 }

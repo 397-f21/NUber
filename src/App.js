@@ -1,77 +1,81 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import { getDatabase, onValue, ref, set } from 'firebase/database';
-import { database, useData } from './utilities/firebase.js';
+import { useData } from './utilities/firebase.js';
 
-const PeopleList = ({ time, timeList }) => {
-  return (
-    timeList[time] ? timeList[time].map((name, key) => <li key={key}>{name}</li>) : null
-  );
-}
+// const PeopleList = ({ time, timeList }) => {
+//   return (
+//     timeList[time] ? timeList[time].map((name, key) => <li key={key}>{name}</li>) : null
+//   );
+// }
+
+// const addScheduleTimes = ({schedule}) => ({
+//   students: mapValues(addCourseTimes, schedule.students)
+  
+// });
+
+// const mapValues = (fn, obj) => (
+//   Object.fromEntries(Object.entries(obj).map(([key, value]) => [key, fn(value)]))
+// );
+
+// const addCourseTimes = course => ({
+//   ...course,
+//   //...timeParts(course.meets)
+// });
+
+const StudentList = ({ students, date, time }) => (
+  <div>
+  { Object.values(students).filter(student => student.date === date && student.arrival === time)
+    .map(student => <Student student={ student } />) }
+  </div>
+);
+
+const Student = ({ student }) => (
+  <div>
+    { student.name }'s flight arrives at { student.arrival }, contact { student.email } to share a ride
+  </div>
+);
+
+
 
 const App = () => {
-  const timeList = {
-    "00:00": [],
-    "01:00": [],
-    "02:00": [],
-    "03:00": [],
-    "04:00": [],
-    "05:00": [],
-    "06:00": [],
-    "07:00": [],
-    "08:00": [],
-    "09:00": [],
-    "10:00": ["Billy", "Bob", "Joe"],
-    "11:00": [],
-    "12:00": [],
-    "13:00": [],
-    "14:00": [],
-    "15:00": [],
-    "16:00": [],
-    "17:00": [],
-    "18:00": [],
-    "19:00": [],
-    "20:00": [],
-    "21:00": [],
-    "22:00": [],
-    "23:00": []
-  }
+   const [time, setTime] = useState(new Date());
+   const [date, setDate] = useState(new Date());
 
-
-
-  const [time, setTime] = useState(new Date());
-  const [date, setDate] = useState(new Date());
-  const [dummy, setDummy] = useState();
-
-  
-  useEffect(() => {
-    const dbRef = ref(database);
-    onValue(dbRef, (snapshot) => {
-      const poop = snapshot.val();
-      setDummy(poop);
-    });
-  }, []);
+  // useEffect(() => {
+  //   const dbRef = ref(database);
+  //   onValue(dbRef, (snapshot) => {
+  //     const poop = snapshot.val();
+  //     setDummy(poop);
+  //   });
+  // }, []);
 
   const changeTimeHandler = (e) => {
     setTime(e.target.value);
+    //console.log(time.getTime);
   }
 
   const changeDateHandler = (e) => {
     setDate(e.target.value);
+    //console.log(date);
   }
 
-  console.log(dummy);
-
+  const [schedule, loading, error] = useData('/');
+  
+  if (error) return <h1>{error}</h1>;
+  if (loading) return <h1>Loading the schedule...</h1>;
+  
   return (
     <div className="App">
       <header className="App-header">
         <h1>NUber</h1>
-        <h2>Enter in your arrival date and time:</h2>
+        <h2>Enter in your flight arrival date and time</h2>
         <input type="time" onChange={(e) => changeTimeHandler(e)} />
+        
         <input type="date" onChange={(e) => changeDateHandler(e)} />
-        <h2>Potential Wildcats to Ride-Share with:</h2>
+        <h2>These Wildcats are looking for Ride-Share too!</h2>
+        
         <ul>
-          <PeopleList time={time} timeList={timeList} />
+        <StudentList students = { schedule.wildcats } date = { date } time = { time } />
         </ul>
       </header>
     </div>
