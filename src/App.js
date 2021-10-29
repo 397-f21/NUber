@@ -5,16 +5,18 @@ import { set, ref} from 'firebase/database';
 
 
 const StudentList = ({ students, date, time }) => {
+  const currdate = new Date(date+" "+time);
+  const currmilsec = currdate.getTime();
   return (
     <div>
-    { Object.values(students).filter(student => student.date === date && student.arrival === time)
+    { Object.keys(students).filter(milsecs => milsecs< currmilsec +30 )
       .map(student => <Student student={ student } />) }
     </div>
 )};
 
 const Student = ({ student }) => (
   <div>
-    { student.name }'s flight arrives at { student.arrival }, contact { student.email } to share a ride
+    { student.name }'s flight arrives at { student.time }, contact { student.email } to share a ride
   </div>
 );
 
@@ -23,7 +25,7 @@ const Results = ({ schedule, date, time }) => {
     <>
       <h2>These Wildcats are looking for Ride-Share too!</h2>
       <ul>
-        <StudentList students={ schedule["wildcats"] } date={ date } time={ time } />
+        <StudentList students={ schedule } date={ date } time={ time } />
       </ul>
     </>
   );
@@ -46,8 +48,8 @@ const App = () => {
   if (error) return <h1>{error}</h1>;
   if (loading) return <h1>Loading the results...</h1>;
 
-  const dummy_date = new Date(date+" "+time);
-  console.log(dummy_date.getTime());
+  // const dummy_date = new Date(date+" "+time);
+  // console.log(dummy_date.getTime());
 
   const setData = () => {
     const data = {
@@ -71,7 +73,7 @@ const App = () => {
         <input type="time" onChange={(e) => changeTimeHandler(e)} />
         <input type="date" onChange={(e) => changeDateHandler(e)} />
         <button onClick={() => setData()}/>
-        {/* <Results schedule={schedule} date={date} time={time} /> */}
+        <Results schedule={schedule} date={date} time={time} />
       </header>
     </div>
   );
