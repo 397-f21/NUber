@@ -71,7 +71,7 @@ const App = () => {
         <h2>Enter in your flight arrival date and time</h2>
         <input type="time" onChange={(e) => changeTimeHandler(e)} />
         
-        <input type="date" date-testid="datevalue" onChange={(e) => changeDateHandler(e)} />
+        <input type="date" data-testid="datevalue" onChange={(e) => changeDateHandler(e)} />
         <h2>These Wildcats are looking for Ride-Share too!</h2>
         
         <ul>
