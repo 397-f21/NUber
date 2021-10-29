@@ -7,12 +7,12 @@ import { set, ref} from 'firebase/database';
 const StudentList = ({ students, date, time }) => {
   const currdate = new Date(date+" "+time);
   const currmilsec = currdate.getTime();
-  return (
+  return(
     <div>
-    { Object.keys(students).filter(milsecs => milsecs< currmilsec +30 )
-      .map(student => <Student student={ student } />) }
+      {Object.entries(students).map(([key, value]) => {
+        if (key < currmilsec+30) return <Student student={ value } /> })}
     </div>
-)};
+  )};
 
 const Student = ({ student }) => (
   <div>
