@@ -1,39 +1,32 @@
 {
-    "wildcats" : {
-        "agp101" : {
-            "netid" : "agp101",
-            "date" : "2021-11-01",
-            "arrival" : "10:55:05",
-            "name" : "Alex",
-            "email" : "alexgold@gmail.com"
+        "1635782400000": {
+            "name": "Alex",
+            "email": "alexgold@gmail.com",
+            "netid": "agp101",
+            "date": "2021-11-01",
+            "time": "11:00"
         },
-        "bxc214" : {
-            "netid" : "bxc214",
-            "date" : "2021-11-01",
-            "arrival" : "11:30",
-            "name" : "Ben",
-            "email" : "benbenben@northwestern.edu"
+        "1635782700000": {
+            "name": "Brian",
+            "email": "Brian@gmail.com",
+            "netid": "bra101",
+            "date": "2021-11-01",
+            "time": "11:05"
         },
-        "ywi789" : {
-            "netid" : "ywi789",
-            "date" : "2021-11-03",
-            "arrival" : "14:00",
-            "name" : "Yani",
-            "email" : "begold@yeah.net"
+        "1635783000000": {
+            "name": "Yaning",
+            "email": "Yaning@gmail.com",
+            "netid": "yan101",
+            "date": "2021-11-01",
+            "time": "11:10"
         },
-        "msk613" : {
-            "netid" : "msk613",
-            "date" : "2021-11-03",
-            "arrival" : "15:05",
-            "name" : "Michael",
-            "email" : "michl2021@gmail.com"
-        },
-        "ylm540" : {
-            "netid" : "ylm540",
-            "date" : "2021-11-03",
-            "arrival" : "15:50",
-            "name" : "Yufei",
-            "email" : "lyf007@yahoo.com"
+        "1635783300000": {
+            "name": "Yufei",
+            "email": "Yufei@gmail.com",
+            "netid": "yfi101",
+            "date": "2021-11-01",
+            "time": "11:15"
         }
-    }
+
+    
 }

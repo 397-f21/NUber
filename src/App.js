@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import './App.css';
-import { useData } from './utilities/firebase.js';
+import { useData , database} from './utilities/firebase.js';
+import { set, ref} from 'firebase/database';
+
 
 const StudentList = ({ students, date, time }) => {
   return (
@@ -46,7 +48,20 @@ const App = () => {
 
   const dummy_date = new Date(date+" "+time);
   console.log(dummy_date.getTime());
-  
+
+  const setData = () => {
+    const data = {
+      "name": "Alex",
+      "email": "alexgold@gmail.com",
+      "netid": "agp101",
+      "date": "2021-11-01",
+      "arrival": "11:00"
+    };
+    set(ref(database, '/1635782400000'), data);
+
+    console.log("database", database);
+  };
+
   
   return (
     <div className="App">
@@ -54,9 +69,9 @@ const App = () => {
         <h1>NUber</h1>
         <h2>Enter in your flight arrival date and time</h2>
         <input type="time" onChange={(e) => changeTimeHandler(e)} />
-        
         <input type="date" onChange={(e) => changeDateHandler(e)} />
-        <Results schedule={schedule} date={date} time={time} />
+        <button onClick={() => setData()}/>
+        {/* <Results schedule={schedule} date={date} time={time} /> */}
       </header>
     </div>
   );
