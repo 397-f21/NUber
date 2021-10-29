@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './App.css';
-import { useData , database} from './utilities/firebase.js';
-import { set, ref} from 'firebase/database';
+import { useData, database } from './utilities/firebase.js';
+import { set, ref } from 'firebase/database';
 
 
 const StudentList = ({ students, date, time }) => {
@@ -14,11 +14,13 @@ const StudentList = ({ students, date, time }) => {
     </div>
   )};
 
-const Student = ({ student }) => (
+const Student = ({ student }) => {
+  console.log("student", student);
+  return (
   <div>
     { student.name }'s flight arrives at { student.time }, contact { student.email } to share a ride
   </div>
-);
+)};
 
 const Results = ({ schedule, date, time }) => {
   return (
