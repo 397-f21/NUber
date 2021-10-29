@@ -2,12 +2,13 @@ import React, { useState } from 'react';
 import './App.css';
 import { useData } from './utilities/firebase.js';
 
-const StudentList = ({ students, date, time }) => (
-  <div>
-  { Object.values(students).filter(student => student.date === date && student.arrival === time)
-    .map(student => <Student student={ student } />) }
-  </div>
-);
+const StudentList = ({ students, date, time }) => {
+  return (
+    <div>
+    { Object.values(students).filter(student => student.date === date && student.arrival === time)
+      .map(student => <Student student={ student } />) }
+    </div>
+)};
 
 const Student = ({ student }) => (
   <div>
@@ -27,8 +28,8 @@ const Results = ({ schedule, date, time }) => {
 };
 
 const App = () => {
-   const [time, setTime] = useState(new Date());
-   const [date, setDate] = useState(new Date());
+   const [time, setTime] = useState("");
+   const [date, setDate] = useState("");
 
   const changeTimeHandler = (e) => {
     setTime(e.target.value);
@@ -42,6 +43,10 @@ const App = () => {
   
   if (error) return <h1>{error}</h1>;
   if (loading) return <h1>Loading the results...</h1>;
+
+  const dummy_date = new Date(date+" "+time);
+  console.log(dummy_date.getTime());
+  
   
   return (
     <div className="App">
