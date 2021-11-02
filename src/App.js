@@ -4,38 +4,51 @@ import { useData, database } from './utilities/firebase.js';
 import { set, ref } from 'firebase/database';
 
 
-const StudentList = ({ students, date, time }) => {
-  const currdate = new Date(date+" "+time);
-  const currmilsec = currdate.getTime();
+const StudentList = ({ students, currmilsec }) => {
   return(
-    <div>
-      {Object.entries(students).map(([key, value]) => {
-        if (key < currmilsec+30) return <Student student={ value } /> })}
-    </div>
+    <>
+      {
+        Object.entries(students).map(([key, value]) => {
+          if (key < currmilsec + 30) return <Student key={key} student={ value } /> 
+        })
+      }
+    </>
   )};
 
 const Student = ({ student }) => {
   console.log("student", student);
   return (
-  <div>
-    { student.name }'s flight arrives at { student.time }, contact { student.email } to share a ride
-  </div>
+    <li>
+      { student.name }'s flight arrives at { student.time }, contact { student.email } to share a ride
+    </li>
 )};
 
-const Results = ({ schedule, date, time }) => {
+const Results = ({ students, date, time }) => {
+  const currdate = new Date(date + " " + time);
+  const currmilsec = currdate.getTime();
+  let resultMessage = "";
+  
+  if (date !== "" && time !== "") {
+    if (Object.entries(students).filter(student => student[0] < currmilsec + 30).length === 0) {
+      resultMessage = "No matches :( Please try a different time!";
+    } else {
+      resultMessage = "These Wildcats are looking to rideshare too!";
+    }
+  }
+
   return (
     <>
-      <h2>These Wildcats are looking for Ride-Share too!</h2>
+      <h2>{resultMessage}</h2>
       <ul>
-        <StudentList students={ schedule } date={ date } time={ time } />
+        <StudentList students={students} currmilsec={currmilsec} />
       </ul>
     </>
   );
 };
 
 const App = () => {
-   const [time, setTime] = useState("");
-   const [date, setDate] = useState("");
+  const [time, setTime] = useState("");
+  const [date, setDate] = useState("");
 
   const changeTimeHandler = (e) => {
     setTime(e.target.value);
@@ -45,13 +58,10 @@ const App = () => {
     setDate(e.target.value);
   }
 
-  const [schedule, loading, error] = useData('/');
+  const [students, loading, error] = useData('/');
   
   if (error) return <h1>{error}</h1>;
   if (loading) return <h1>Loading the results...</h1>;
-
-  // const dummy_date = new Date(date+" "+time);
-  // console.log(dummy_date.getTime());
 
   const setData = () => {
     const data = {
@@ -65,7 +75,6 @@ const App = () => {
 
     console.log("database", database);
   };
-
   
   return (
     <div className="App">
@@ -74,8 +83,8 @@ const App = () => {
         <h2>Enter in your flight arrival date and time</h2>
         <input type="time" onChange={(e) => changeTimeHandler(e)} />
         <input type="date" onChange={(e) => changeDateHandler(e)} />
-        <button onClick={() => setData()}/>
-        <Results schedule={schedule} date={date} time={time} />
+        <button type="button" onClick={() => setData()}>Button</button>
+        <Results students={students} date={date} time={time} />
       </header>
     </div>
   );
