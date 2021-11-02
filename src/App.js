@@ -28,8 +28,6 @@ export const Results = ({ students, date, time }) => {
   const currmilsec = currdate.getTime();
   let resultMessage = "";
 
-  console.log("students", students);
-
   if (date !== "" && time !== "") {
     if (Object.entries(students).filter(student => student[0] < currmilsec + 30).length === 0) {
       resultMessage = "No matches :( Please try a different time!";

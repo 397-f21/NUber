@@ -18,12 +18,7 @@ describe("result message", () => {
             }
         };
 
-        // const { getByTestId } = render(<Results students={data} date={"10:00"} time={"2021-10-31"} />);
-        const { wrapper } = shallow(<Results students={data} date={"10:00"} time={"2021-10-31"} />);
+        const wrapper = shallow(<Results students={data} date={"10:00"} time={"2021-10-31"} />);
         expect(wrapper.text()).toMatch("No matches :( Please try a different time!");
-        // const resultMessage = getByTestId("result-message");
-        // console.log("resultMessage", resultMessage);
-        // expect(resultMessage).toBeTruthy();
-        // expect(resultMessage).stringMatching("No matches :( Please try a different time!");
     });
 });
