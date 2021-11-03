@@ -18,7 +18,24 @@ describe("result message", () => {
             }
         };
 
-        const wrapper = shallow(<Results students={data} date={"10:00"} time={"2021-10-31"} />);
+        const wrapper = shallow(<Results students={data} date={"2021-10-31"} time={"10:00"} />);
         expect(wrapper.text()).toMatch("No matches :( Please try a different time!");
     });
+
+    it("renders match message of one person", () => {
+        const data = {
+            "/1635782400000": {
+                "name": "Test",
+                "email": "test@gmail.com",
+                "netid": "test101",
+                "date": "2021-11-01",
+                "arrival": "11:00"
+            }
+        };
+
+        const wrapper = shallow(<Results students={data} date={"2021-11-00"} time={"11:00"} />);
+        console.log("wrapper text:" + wrapper.text());
+        expect(wrapper.text()).toMatch("These Wildcats are looking to rideshare too!");
+    });
+
 });
