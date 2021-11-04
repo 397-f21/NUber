@@ -24,8 +24,9 @@ const Student = ({ student }) => {
 )};
 
 export const Results = ({ students, date, time }) => {
-  const currdate = new Date(date + " " + time);
+  const currdate = new Date(date + "T" + time);
   const currmilsec = currdate.getTime();
+  
   let resultMessage = "";
 
   if (date !== "" && time !== "") {
