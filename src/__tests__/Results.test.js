@@ -17,7 +17,9 @@ describe("result message", () => {
             }
         };
         const wrapper = shallow(<Results students={data} date={""} time={""} />);
-        expect(wrapper.text()).toMatch("");
+        console.log("wrapper.text()", wrapper.text());
+        expect(wrapper.text()).toEqual(expect.not.stringContaining("No matches :( Please try a different time!"));
+        expect(wrapper.text()).toEqual(expect.not.stringContaining("These Wildcats are looking to rideshare too!"));
     });
 
     it("renders no match msg", () => {
@@ -54,7 +56,6 @@ describe("result message", () => {
         };
 
         const wrapper = shallow(<Results students={data} date={"2021-11-01"} time={"11:10"} />);
-        console.log("wrapper text:" + wrapper.text());
         expect(wrapper.text()).toMatch("These Wildcats are looking to rideshare too!");
     });
 
