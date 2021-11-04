@@ -5,14 +5,20 @@ describe ('Test App', () => {
     });
 });
   
-describe ('Content test', () => {
+describe ('Button test', () => {
 
   it ('launches', () => {
     cy.visit ('/');
   });
 
-  it ('opens with Fall CS courses', () => {
+  it ('check if the button is here', () => {
     cy.visit ('/');
-    cy.get('[data-cy=course]').should('contain', 'Fall CS');
+    cy.get('[button-cy=button]').should('contain', 'Button');
+  });
+
+  it('input date', () => {
+    cy.visit ('/');
+    cy.get('[date-cy=date]').type("2021-11-01");
   });
 });
+
