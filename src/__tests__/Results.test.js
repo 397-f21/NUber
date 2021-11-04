@@ -6,6 +6,20 @@ import { Results } from '../App';
 Enzyme.configure({ adapter: new Adapter() });
 
 describe("result message", () => {
+    it("renders no msg if no date & time input", () => {
+        const data = {
+            "1635782400000": {
+                "name": "Test",
+                "email": "test@gmail.com",
+                "netid": "test101",
+                "date": "2021-11-01",
+                "arrival": "11:00"
+            }
+        };
+        const wrapper = shallow(<Results students={data} date={""} time={""} />);
+        expect(wrapper.text()).toMatch("");
+    });
+
     it("renders no match msg", () => {
         const data = {
             "1635782400000": {
