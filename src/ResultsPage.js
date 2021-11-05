@@ -69,7 +69,7 @@ const ResultsPage = () => {
         "email": "alexgold@gmail.com",
         "netid": "agp101",
         "date": "2021-11-01",
-        "arrival": "11:00"
+        "time": "11:00"
         };
         set(ref(database, '/1635782400000'), data);
 
