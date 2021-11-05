@@ -83,8 +83,8 @@ const App = () => {
         <h1>NUber</h1>
         <h2>Enter in your flight arrival date and time</h2>
         <input type="time" onChange={(e) => changeTimeHandler(e)} />
-        <input type="date" onChange={(e) => changeDateHandler(e)} />
-        <button type="button" onClick={() => setData()}>Button</button>
+        <input type="date"  date-cy="date" onChange={(e) => changeDateHandler(e)} />
+        <button type="button" button-cy="button" onClick={() => setData()}>Button</button>
         <Results students={students} date={date} time={time} />
       </header>
     </div>
