@@ -51,20 +51,26 @@ const InputPage = ({navigation}) => {
     
     return (
         <>
-            <h1>NUber-input-test</h1>
-            
+            <h1>NUber-input-page</h1>
+
             <label for="fname">Full Name:</label>
             <input type="text" id="fname" onChange={(e) => changeNameHandler(e)} />
-            <label for="email">your email:</label>
-            <input type="email" id="email" size="40" onChange={(e) => changeEmailHandler(e)} />
+            <label for="email">Email:</label>
+            <input type="email" id="email" onChange={(e) => changeEmailHandler(e)} />
             <label for="netid">NetID:</label>
             <input type="text" id="netid" onChange={(e) => changeNetidHandler(e)} />
 
-            <h2>Enter in your flight arrival date and time</h2>
+            <label for="airports">Arrival Airport:</label>
+            <select id="airports">
+                <option value="ORD">O'Hare International Airport</option>
+            </select>
+
+            <h3>Enter in your preferred arrival date and time</h3>
             <input type="time" onChange={(e) => changeTimeHandler(e)} />
             <input type="date" date-cy="date" onChange={(e) => changeDateHandler(e)} />
 
-            <button type="button" button-cy="button" onClick={clickHandler}>Button</button>
+            <button type="button" button-cy="button" onClick={clickHandler}>Submit</button>
+            <h6>*By submitting, you agree to NUber storing your information and sharing it with other NU users</h6>
         </>
     );
 };
