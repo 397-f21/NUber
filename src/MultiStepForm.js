@@ -20,8 +20,8 @@ const MultiStepForm = () => {
             return <InputPage navigation={navigation} />;
         case "results":
             return <ResultsPage />;
-        // default:
-        //     return <inputPage navigation={navigation} />;
+        default:
+            return <inputPage navigation={navigation} />;
     }
 };
 
