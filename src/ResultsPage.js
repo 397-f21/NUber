@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
-
-import { useData, database } from './utilities/firebase.js';
-import { set, ref } from 'firebase/database';
+import { InputPage } from './InputPage.js';
+import { useData } from './utilities/firebase.js';
 
 const StudentList = ({ students, currmilsec }) => {
     return(
       <>
         {
           Object.entries(students).map(([key, value]) => {
-            if (key < currmilsec + 30) return <Student key={key} student={ value } /> 
+            if (key > InputPage.keyinsec-3600000 
+                && key < InputPage.keyinsec+7200000) return <Student key={key} student={ value } /> 
           })
         }
       </>
@@ -22,14 +22,15 @@ const Student = ({ student }) => {
         </li>
 )};
   
-export const Results = ({ students, date, time }) => {
-    const currdate = new Date(date + "T" + time);
-    const currmilsec = currdate.getTime();
+const Results = ({ students, date, time }) => {
+   // const currdate = new Date(date + "T" + time);
+   // const currmilsec = currdate.getTime();
     
     let resultMessage = "";
-  
+  // pick user arriving within 1 hr before and 2 hrs after
     if (date !== "" && time !== "") {
-        if (Object.entries(students).filter(student => student[0] < currmilsec + 30).length === 0) {
+        if (Object.entries(students).filter(student => student[0] > InputPage.keyinsec-3600000 
+            && student[0] < InputPage.keyinsec+7200000).length === 0) {
             resultMessage = "No matches :( Please try a different time!";
         } else {
             resultMessage = "These Wildcats are looking to rideshare too!";
@@ -40,50 +41,51 @@ export const Results = ({ students, date, time }) => {
         <>
             <h2 data-testid="result-message">{resultMessage}</h2>
             <ul>
-                <StudentList students={students} currmilsec={currmilsec} />
+                <StudentList students={students} currmilsec={InputPage.keyinsec} />
             </ul>
         </>
     );
 };
 
 const ResultsPage = () => {
-    const [time, setTime] = useState("");
-    const [date, setDate] = useState("");
+    // const [time, setTime] = useState("");
+    // const [date, setDate] = useState("");
 
-    const changeTimeHandler = (e) => {
-        setTime(e.target.value);
-    }
+    // const changeTimeHandler = (e) => {
+    //     setTime(e.target.value);
+    // }
 
-    const changeDateHandler = (e) => {
-        setDate(e.target.value);
-    }
+    // const changeDateHandler = (e) => {
+    //     setDate(e.target.value);
+    // }
 
     const [students, loading, error] = useData('/');
     
     if (error) return <h1>{error}</h1>;
     if (loading) return <h1>Loading the results...</h1>;
 
-    const setData = () => {
-        const data = {
-        "name": "Alex",
-        "email": "alexgold@gmail.com",
-        "netid": "agp101",
-        "date": "2021-11-01",
-        "time": "11:00"
-        };
-        set(ref(database, '/1635782400000'), data);
+    // const setData = () => {
+    //     const data = {
+    //     "name": "Alex",
+    //     "email": "alexgold@gmail.com",
+    //     "netid": "agp101",
+    //     "date": "2021-11-01",
+    //     "time": "11:00"
+    //     };
+    //     set(ref(database, '/1635782400000'), data);
 
-        console.log("database", database);
-    };
+    //     console.log("database", database);
+    // };
 
     return (
         <>
             <h1>NUber</h1>
-            <h2>Enter in your flight arrival date and time</h2>
+            
+            {/* <h2>Enter in your flight arrival date and time</h2>
             <input type="time" onChange={(e) => changeTimeHandler(e)} />
-            <input type="date"  date-cy="date" onChange={(e) => changeDateHandler(e)} />
-            <button type="button" button-cy="button" onClick={() => setData()}>Button</button>
-            <Results students={students} date={date} time={time} />
+            <input type="date"  date-cy="date" onChange={(e) => changeDateHandler(e)} /> */}
+            {/* <button type="button" button-cy="button" onClick={() => setData()}>Button</button> */}
+            <Results students={students} date={InputPage.date} time={InputPage.time} />
         </>
     );
 };

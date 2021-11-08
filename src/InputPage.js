@@ -2,7 +2,7 @@ import { database } from './utilities/firebase.js';
 import { set, ref } from 'firebase/database';
 import React, { useState } from 'react';
 
-const InputPage = ({navigation}) => {
+export const InputPage = ({navigation}) => {
     const [time, setTime] = useState("");
     const [date, setDate] = useState("");
     const [name, setName] = useState("");
@@ -30,12 +30,16 @@ const InputPage = ({navigation}) => {
         return currdate.getTime();
     }
 
+    // export {date, time};
+
     const { next } = navigation;
 
     const clickHandler = () => {
         setData();
         next();
     }
+
+    const keyinsec = makekey(time, date)+Math.floor(Math.random() * 1000) ;  //temp solution
 
     const setData = () => {
         const data = {
@@ -45,7 +49,7 @@ const InputPage = ({navigation}) => {
         "date": date,
         "time": time
         };
-        const keyinsec = makekey(time, date);
+        
         set(ref(database, '/'+keyinsec), data);
     };
     
