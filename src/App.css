@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  background-color: lavender;
 }
 
 .App-logo {
@@ -14,14 +15,31 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: lavender;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  /* justify-content: center; */
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: black;
+}
+
+button {
+  border-radius: 10px;
+  background-color: gray;
+  color: lavender;
+  border: 2px solid lavender;
+  width: 6vw;
+  height: 4vh;
+  margin-top: 2%;
+}
+
+input {
+  width: 14vw;
+  height: 4vh;
+  border-radius: 8%;
+  margin-top: 2%;
 }
 
 .App-link {

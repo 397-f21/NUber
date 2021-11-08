@@ -41,12 +41,13 @@ const InputPage = ({navigation}) => {
     
     return (
         <>
-            <h1>NUber-input-test</h1>
-            <h2>Enter in your flight arrival date and time</h2>
-            <input type="time" onChange={(e) => changeTimeHandler(e)} />
-            <input type="date" date-cy="date" onChange={(e) => changeDateHandler(e)} />
-
-            <button type="button" button-cy="button" onClick={clickHandler}>Button</button>
+            <body>
+                <h1>NUber🚕</h1>
+                <h4>Enter your flight arrival airport, date and time to find other wildcats arriving around the same time!</h4>
+                <div><input type="time" onChange={(e) => changeTimeHandler(e)} /></div>
+                <div><input type="date" date-cy="date" onChange={(e) => changeDateHandler(e)} /></div>
+                <button type="button" button-cy="button" onClick={clickHandler}>Submit</button>
+            </body>
         </>
     );
 };
