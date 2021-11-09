@@ -37,15 +37,12 @@ export const InputPage = ({navigation}) => {
     const { next } = navigation;
 
     const clickHandler = () => {
-       
         if (name !== "" && email !== "" && netid !== "" && date !== "" && time !== "") {
             setData();
             next();
         }
         
     }
-
-    
 
     const setData = () => {
         const data = {
@@ -55,8 +52,8 @@ export const InputPage = ({navigation}) => {
             "date": date,
             "time": time
             };
-            keyinsec = makekey(time, date)+Math.floor(Math.random() * 1000) ;  //temp solution
-        set(ref(database, '/' + keyinsec), data);
+        keyinsec = makekey(time, date)+Math.floor(Math.random() * 1000) ;  //temp solution
+        // set(ref(database, '/' + keyinsec), data);
     };
     
     return (
@@ -65,7 +62,7 @@ export const InputPage = ({navigation}) => {
 
             <label for="fname">Full Name:</label>
             <input type="text" id="fname" onChange={(e) => changeNameHandler(e)} />
-            <label for="email">Email:</label>
+            <label for="email">Phone Number:</label>
             <input type="email" id="email" onChange={(e) => changeEmailHandler(e)} />
             <label for="netid">NetID:</label>
             <input type="text" id="netid" onChange={(e) => changeNetidHandler(e)} />
@@ -76,11 +73,11 @@ export const InputPage = ({navigation}) => {
                 <option value="MDW">Midway International Airport</option>
             </select>
 
-            <h3>Enter in your preferred arrival date and time</h3>
+            <h3>Enter in your arrival date and time</h3>
             <input type="time" className="bottom" onChange={(e) => changeTimeHandler(e)} />
             <input type="date" className="bottom" date-cy="date" onChange={(e) => changeDateHandler(e)} />
 
-            <button type="button" button-cy="button" onClick={clickHandler}>Submit</button>
+            <a className="button" button-cy="button" onClick={clickHandler}>Submit</a>
             <h6>*By submitting, you agree to NUber storing your information and sharing it with other NU users</h6>
         </>
     );

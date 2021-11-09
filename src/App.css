@@ -57,3 +57,20 @@ input {
     transform: rotate(360deg);
   }
 }
+
+.button {
+	display: block;
+	justify-self: end;
+	text-align: center;
+	border-radius: 20px;
+	margin: 20px auto;
+	padding: 10px 15px;
+	background-color: #efefef;
+	min-width: 70px;
+}
+
+a:hover.button {
+  color: #666666;
+  cursor: pointer;
+  background-color: #cec8ef;
+}
