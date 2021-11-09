@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { InputPage } from './InputPage.js';
+import { InputPage, keyinsec} from './InputPage.js';
 import { useData } from './utilities/firebase.js';
 
 const StudentList = ({ students, currmilsec }) => {
@@ -7,8 +7,8 @@ const StudentList = ({ students, currmilsec }) => {
       <>
         {
           Object.entries(students).map(([key, value]) => {
-            if (key > InputPage.keyinsec-3600000 
-                && key < InputPage.keyinsec+7200000) return <Student key={key} student={ value } /> 
+            if (key > keyinsec-3600000
+                && key < keyinsec+7200000) return <Student key={key} student={ value } /> 
           })
         }
       </>
@@ -29,8 +29,7 @@ const Results = ({ students, date, time }) => {
     let resultMessage = "";
   // pick user arriving within 1 hr before and 2 hrs after
     if (date !== "" && time !== "") {
-        if (Object.entries(students).filter(student => student[0] > InputPage.keyinsec-3600000 
-            && student[0] < InputPage.keyinsec+7200000).length === 0) {
+        if (Object.entries(students).filter(student => student[0] > keyinsec-3600000 && student[0] < keyinsec+7200000).length === 0) {
             resultMessage = "No matches :( Please try a different time!";
         } else {
             resultMessage = "These Wildcats are looking to rideshare too!";

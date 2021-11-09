@@ -2,6 +2,8 @@ import { database } from './utilities/firebase.js';
 import { set, ref } from 'firebase/database';
 import React, { useState } from 'react';
 
+export let keyinsec = 0;
+
 export const InputPage = ({navigation}) => {
     const [time, setTime] = useState("");
     const [date, setDate] = useState("");
@@ -39,7 +41,7 @@ export const InputPage = ({navigation}) => {
         next();
     }
 
-    const keyinsec = makekey(time, date)+Math.floor(Math.random() * 1000) ;  //temp solution
+    keyinsec = makekey(time, date)+Math.floor(Math.random() * 1000) ;  //temp solution
 
     const setData = () => {
         const data = {
@@ -78,5 +80,7 @@ export const InputPage = ({navigation}) => {
         </>
     );
 };
+
+// export const keyinsec;
 
 export default InputPage;
