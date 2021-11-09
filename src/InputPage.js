@@ -37,22 +37,26 @@ export const InputPage = ({navigation}) => {
     const { next } = navigation;
 
     const clickHandler = () => {
-        setData();
-        next();
+       
+        if (name !== "" && email !== "" && netid !== "" && date !== "" && time !== "") {
+            setData();
+            next();
+        }
+        
     }
 
     
 
     const setData = () => {
         const data = {
-        "name": name,
-        "email": email,
-        "netid": netid,
-        "date": date,
-        "time": time
-        };
-        keyinsec = makekey(time, date)+Math.floor(Math.random() * 1000) ;  //temp solution
-        set(ref(database, '/'+keyinsec), data);
+            "name": name,
+            "email": email,
+            "netid": netid,
+            "date": date,
+            "time": time
+            };
+            keyinsec = makekey(time, date)+Math.floor(Math.random() * 1000) ;  //temp solution
+        set(ref(database, '/' + keyinsec), data);
     };
     
     return (
@@ -73,8 +77,8 @@ export const InputPage = ({navigation}) => {
             </select>
 
             <h3>Enter in your preferred arrival date and time</h3>
-            <input type="time" onChange={(e) => changeTimeHandler(e)} />
-            <input type="date" date-cy="date" onChange={(e) => changeDateHandler(e)} />
+            <input type="time" className="bottom" onChange={(e) => changeTimeHandler(e)} />
+            <input type="date" className="bottom" date-cy="date" onChange={(e) => changeDateHandler(e)} />
 
             <button type="button" button-cy="button" onClick={clickHandler}>Submit</button>
             <h6>*By submitting, you agree to NUber storing your information and sharing it with other NU users</h6>
