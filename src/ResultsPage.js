@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
-import { InputPage, keyinsec} from './InputPage.js';
+import { InputPage, keyinsec } from './InputPage.js';
 import { useData } from './utilities/firebase.js';
 
-const StudentList = ({ students, currmilsec }) => {
+const StudentList = ({ students }) => {
     return(
       <>
         {
           Object.entries(students).map(([key, value]) => {
-            if (key > keyinsec-3600000
+            if (//key !== keyinsec &&
+                key > keyinsec-3600000
                 && key < keyinsec+7200000) return <Student key={key} student={ value } /> 
           })
         }
@@ -29,8 +30,8 @@ const Results = ({ students, date, time }) => {
     let resultMessage = "";
   // pick user arriving within 1 hr before and 2 hrs after
     if (date !== "" && time !== "") {
-        if (Object.entries(students).filter(student => student[0] > keyinsec-3600000 && student[0] < keyinsec+7200000).length === 0) {
-            resultMessage = "No matches :( Please try a different time!";
+        if (Object.entries(students).filter(student => student[0] > keyinsec-3600000 && student[0] < keyinsec+7200000).length === 1) {
+            resultMessage = "No matches :( Please try a different time!";       //the one is the user himself
         } else {
             resultMessage = "These Wildcats are looking to rideshare too!";
         }
@@ -40,13 +41,13 @@ const Results = ({ students, date, time }) => {
         <>
             <h2 data-testid="result-message">{resultMessage}</h2>
             <ul>
-                <StudentList students={students} currmilsec={InputPage.keyinsec} />
+                <StudentList students={students} />
             </ul>
         </>
     );
 };
 
-const ResultsPage = () => {
+const ResultsPage = ({navigation}) => {
     // const [time, setTime] = useState("");
     // const [date, setDate] = useState("");
 
@@ -75,6 +76,7 @@ const ResultsPage = () => {
 
     //     console.log("database", database);
     // };
+    const { previous } = navigation;
 
     return (
         <>
@@ -85,6 +87,8 @@ const ResultsPage = () => {
             <input type="date"  date-cy="date" onChange={(e) => changeDateHandler(e)} /> */}
             {/* <button type="button" button-cy="button" onClick={() => setData()}>Button</button> */}
             <Results students={students} date={InputPage.date} time={InputPage.time} />
+
+            <button onClick={previous}>Try a different time</button>
         </>
     );
 };

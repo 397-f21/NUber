@@ -41,7 +41,7 @@ export const InputPage = ({navigation}) => {
         next();
     }
 
-    keyinsec = makekey(time, date)+Math.floor(Math.random() * 1000) ;  //temp solution
+    
 
     const setData = () => {
         const data = {
@@ -51,7 +51,7 @@ export const InputPage = ({navigation}) => {
         "date": date,
         "time": time
         };
-        
+        keyinsec = makekey(time, date)+Math.floor(Math.random() * 1000) ;  //temp solution
         set(ref(database, '/'+keyinsec), data);
     };
     
@@ -80,7 +80,5 @@ export const InputPage = ({navigation}) => {
         </>
     );
 };
-
-// export const keyinsec;
 
 export default InputPage;
