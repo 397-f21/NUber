@@ -57,7 +57,7 @@ export const InputPage = ({navigation}) => {
     
     return (
         <>
-            <h1>NUber-input-page</h1>
+            <h1>NUber</h1>
 
             <label for="fname">Full Name:</label>
             <input type="text" id="fname" onChange={(e) => changeNameHandler(e)} />
@@ -69,6 +69,7 @@ export const InputPage = ({navigation}) => {
             <label for="airports">Arrival Airport:</label>
             <select id="airports">
                 <option value="ORD">O'Hare International Airport</option>
+                <option value="MDW">Midway International Airport</option>
             </select>
 
             <h3>Enter in your preferred arrival date and time</h3>
