@@ -1,7 +1,7 @@
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 import Enzyme, { shallow } from 'enzyme';
 import React from 'react';
-import { Results } from '../App';
+import { Results } from '../ResultsPage';
 
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -38,6 +38,9 @@ describe("result message", () => {
     });
 
     it("renders match message of one person", () => {
+        const time = "11:10"
+        const date = "2021-11-01"
+
         const data = {
             "1635782400000": {
                 "name": "Test",
@@ -46,7 +49,7 @@ describe("result message", () => {
                 "date": "2021-11-01",
                 "arrival": "11:00"
             },
-            "/1635782700000": {
+            "1635782700000": {
                 "name": "Test",
                 "email": "test@gmail.com",
                 "netid": "test101",
@@ -55,7 +58,15 @@ describe("result message", () => {
             }
         };
 
-        const wrapper = shallow(<Results students={data} date={"2021-11-01"} time={"11:10"} />);
+        const makekey = (time, date) => {
+            const currdate = new Date(date + "T" + time);
+            return currdate.getTime();
+        };
+
+        const keyinsec = makekey(time, date)+Math.floor(Math.random() * 1000);
+
+
+        const wrapper = shallow(<Results students={data} date={date} time={time} keyinsec={keyinsec} />);
         expect(wrapper.text()).toMatch("These Wildcats are looking to rideshare too!");
     });
 

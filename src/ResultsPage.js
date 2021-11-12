@@ -26,7 +26,7 @@ const Student = ({ student }) => {
         </li>
 )};
   
-const Results = ({ students, date, time }) => {
+export const Results = ({ students, date, time, keyinsec }) => {
    // const currdate = new Date(date + "T" + time);
    // const currmilsec = currdate.getTime();
     
@@ -34,6 +34,7 @@ const Results = ({ students, date, time }) => {
   // pick user arriving within 1 hr before and 2 hrs after
     if (date !== "" && time !== "") {
         if (Object.entries(students).filter(student => student[0] > keyinsec-3600000 && student[0] < keyinsec+7200000).length === 0) {
+            console.log("keyinsec", keyinsec);
             resultMessage = "No matches :( Please try a different time!";       //the one is the user himself
         } else {
             resultMessage = "These Wildcats are looking to rideshare too!";
