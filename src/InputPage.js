@@ -1,5 +1,3 @@
-import { database } from './utilities/firebase.js';
-import { set, ref } from 'firebase/database';
 import React, { useState } from 'react';
 
 export let keyinsec = 0;
@@ -45,13 +43,13 @@ export const InputPage = ({navigation}) => {
     }
 
     const setData = () => {
-        const data = {
-            "name": name,
-            "email": email,
-            "netid": netid,
-            "date": date,
-            "time": time
-            };
+        // const data = {
+        //     "name": name,
+        //     "email": email,
+        //     "netid": netid,
+        //     "date": date,
+        //     "time": time
+        //     };
         keyinsec = makekey(time, date)+Math.floor(Math.random() * 1000) ;  //temp solution
         // set(ref(database, '/' + keyinsec), data);
     };
