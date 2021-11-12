@@ -7,9 +7,12 @@ const StudentList = ({ students }) => {
       <>
         {
           Object.entries(students).map(([key, value]) => {
-            if (//key !== keyinsec &&
-                key > keyinsec-3600000
-                && key < keyinsec+7200000) return <Student key={key} student={ value } /> 
+            if (key > keyinsec-3600000 && key < keyinsec+7200000) {
+                return <Student key={key} student={ value } />;
+            } else {
+                return null;
+            }
+                
           })
         }
       </>
@@ -30,7 +33,7 @@ const Results = ({ students, date, time }) => {
     let resultMessage = "";
   // pick user arriving within 1 hr before and 2 hrs after
     if (date !== "" && time !== "") {
-        if (Object.entries(students).filter(student => student[0] > keyinsec-3600000 && student[0] < keyinsec+7200000).length === 1) {
+        if (Object.entries(students).filter(student => student[0] > keyinsec-3600000 && student[0] < keyinsec+7200000).length === 0) {
             resultMessage = "No matches :( Please try a different time!";       //the one is the user himself
         } else {
             resultMessage = "These Wildcats are looking to rideshare too!";
