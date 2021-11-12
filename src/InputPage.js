@@ -77,7 +77,7 @@ export const InputPage = ({navigation}) => {
             <input type="time" className="bottom" onChange={(e) => changeTimeHandler(e)} />
             <input type="date" className="bottom" date-cy="date" onChange={(e) => changeDateHandler(e)} />
 
-            <a className="button" button-cy="button" onClick={clickHandler}>Submit</a>
+            <button className="button" button-cy="button" onClick={clickHandler}>Submit</button>
             <h6>*By submitting, you agree to NUber storing your information and sharing it with other NU users</h6>
         </>
     );

@@ -88,7 +88,7 @@ const ResultsPage = ({navigation}) => {
             {/* <button type="button" button-cy="button" onClick={() => setData()}>Button</button> */}
             <Results students={students} date={InputPage.date} time={InputPage.time} />
 
-            <a className="button" onClick={previous}>Try a different time</a>
+            <button className="button" onClick={previous}>Try a different time</button>
         </>
     );
 };
