@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { InputPage, keyinsec } from './InputPage.js';
 import { useData } from './utilities/firebase.js';
 
