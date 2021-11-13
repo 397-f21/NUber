@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 
-export let keyinsec = 0;
-
-export const InputPage = ({navigation}) => {
+export const InputPage = ({ navigation, setKeyinsec }) => {
     const [time, setTime] = useState("");
     const [date, setDate] = useState("");
     const [name, setName] = useState("");
@@ -30,8 +28,6 @@ export const InputPage = ({navigation}) => {
         return currdate.getTime();
     }
 
-    // export {date, time};
-
     const { next } = navigation;
 
     const clickHandler = () => {
@@ -50,7 +46,8 @@ export const InputPage = ({navigation}) => {
         //     "date": date,
         //     "time": time
         //     };
-        keyinsec = makekey(time, date)+Math.floor(Math.random() * 1000) ;  //temp solution
+        const keyinsec = makekey(time, date)+Math.floor(Math.random() * 1000);  //temp solution
+        setKeyinsec(keyinsec);
         // set(ref(database, '/' + keyinsec), data);
     };
     
@@ -58,14 +55,14 @@ export const InputPage = ({navigation}) => {
         <>
             <h1>NUber</h1>
 
-            <label for="fname">Full Name:</label>
+            <label htmlFor="fname">Full Name:</label>
             <input type="text" id="fname" onChange={(e) => changeNameHandler(e)} />
-            <label for="email">Phone Number:</label>
+            <label htmlFor="email">Phone Number:</label>
             <input type="email" id="email" onChange={(e) => changeEmailHandler(e)} />
-            <label for="netid">NetID:</label>
+            <label htmlFor="netid">NetID:</label>
             <input type="text" id="netid" onChange={(e) => changeNetidHandler(e)} />
 
-            <label for="airports">Arrival Airport:</label>
+            <label htmlFor="airports">Arrival Airport:</label>
             <select id="airports">
                 <option value="ORD">O'Hare International Airport</option>
                 <option value="MDW">Midway International Airport</option>
