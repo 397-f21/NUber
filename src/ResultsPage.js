@@ -27,15 +27,11 @@ const Student = ({ student }) => {
 )};
   
 export const Results = ({ students, date, time, keyinsec }) => {
-   // const currdate = new Date(date + "T" + time);
-   // const currmilsec = currdate.getTime();
    keyinsec = parseInt(keyinsec);
     
     let resultMessage = "";
   // pick user arriving within 1 hr before and 2 hrs after
     if (date !== "" && time !== "" && keyinsec !== undefined) {
-        // console.log("data(students)", students);
-        // console.log("Object.entries(students) filtered", Object.entries(students).filter(student => student[0] > keyinsec-3600000 && student[0] < keyinsec+7200000));
         if (Object.entries(students).filter(student => parseInt(student[0]) > keyinsec-3600000 && parseInt(student[0]) < keyinsec+7200000).length === 0) {
             resultMessage = "No matches :( Please try a different time!";       //the one is the user himself
         } else {
@@ -54,16 +50,6 @@ export const Results = ({ students, date, time, keyinsec }) => {
 };
 
 const ResultsPage = ({ navigation, keyinsec }) => {
-    // const [time, setTime] = useState("");
-    // const [date, setDate] = useState("");
-
-    // const changeTimeHandler = (e) => {
-    //     setTime(e.target.value);
-    // }
-
-    // const changeDateHandler = (e) => {
-    //     setDate(e.target.value);
-    // }
 
     const [students, loading, error] = useData('/');
     
@@ -79,8 +65,6 @@ const ResultsPage = ({ navigation, keyinsec }) => {
     //     "time": "11:00"
     //     };
     //     set(ref(database, '/1635782400000'), data);
-
-    //     console.log("database", database);
     // };
     const { previous } = navigation;
 

@@ -18,7 +18,6 @@ describe("result message", () => {
             }
         };
         const wrapper = shallow(<Results students={data} date={""} time={""} />);
-        console.log("wrapper.text()", wrapper.text());
         expect(wrapper.text()).toEqual(expect.not.stringContaining("No matches :( Please try a different time!"));
         expect(wrapper.text()).toEqual(expect.not.stringContaining("These Wildcats are looking to rideshare too!"));
     });
@@ -66,8 +65,6 @@ describe("result message", () => {
 
         const keyinsec = makeKey(time, date)+Math.floor(Math.random() * 1000);
         console.log("test keyinsec", keyinsec);
-        console.log("1635782400000", Date("1635782400000"));
-        console.log("1635765000087", Date("1635765000087"));
 
         const wrapper = shallow(<Results students={data} date={date} time={time} keyinsec={keyinsec} />);
         expect(wrapper.text()).toMatch("These Wildcats are looking to rideshare too!");

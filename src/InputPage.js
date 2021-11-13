@@ -43,7 +43,6 @@ export const InputPage = ({ navigation, setKeyinsec }) => {
         //     "time": time
         //     };
         const keyinsec = makeKey(time, date)+Math.floor(Math.random() * 1000);  //temp solution
-        console.log(keyinsec);
         setKeyinsec(keyinsec);
         // set(ref(database, '/' + keyinsec), data);
     };
