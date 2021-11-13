@@ -2,6 +2,7 @@ import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 import Enzyme, { shallow } from 'enzyme';
 import React from 'react';
 import { Results } from '../ResultsPage';
+import { makeKey } from '../utilities/datetime';
 
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -36,12 +37,7 @@ describe("result message", () => {
         const date = "2021-10-31";
         const time = "10:00";
 
-        const makekey = (time, date) => {
-            const currdate = new Date(date + "T" + time);
-            return currdate.getTime();
-        };
-
-        const keyinsec = makekey(time, date)+Math.floor(Math.random() * 1000);
+        const keyinsec = makeKey(time, date)+Math.floor(Math.random() * 1000);
 
         const wrapper = shallow(<Results students={data} date={date} time={time} keyinsec={keyinsec} />);
         expect(wrapper.text()).toMatch("No matches :( Please try a different time!");
@@ -68,12 +64,7 @@ describe("result message", () => {
             }
         };
 
-        const makekey = (time, date) => {
-            const currdate = new Date(date + "T" + time);
-            return currdate.getTime();
-        };
-
-        const keyinsec = makekey(time, date)+Math.floor(Math.random() * 1000);
+        const keyinsec = makeKey(time, date)+Math.floor(Math.random() * 1000);
         console.log("test keyinsec", keyinsec);
 
         const wrapper = shallow(<Results students={data} date={date} time={time} keyinsec={keyinsec} />);

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { makeKey } from './utilities/datetime';
 
 export const InputPage = ({ navigation, setKeyinsec }) => {
     const [time, setTime] = useState("");
@@ -23,11 +24,6 @@ export const InputPage = ({ navigation, setKeyinsec }) => {
         setDate(e.target.value);
     }
 
-    const makekey = (time, date) => {
-        const currdate = new Date(date + "T" + time);
-        return currdate.getTime();
-    }
-
     const { next } = navigation;
 
     const clickHandler = () => {
@@ -46,7 +42,8 @@ export const InputPage = ({ navigation, setKeyinsec }) => {
         //     "date": date,
         //     "time": time
         //     };
-        const keyinsec = makekey(time, date)+Math.floor(Math.random() * 1000);  //temp solution
+        const keyinsec = makeKey(time, date)+Math.floor(Math.random() * 1000);  //temp solution
+        console.log(keyinsec);
         setKeyinsec(keyinsec);
         // set(ref(database, '/' + keyinsec), data);
     };
