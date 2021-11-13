@@ -60,9 +60,9 @@ describe("result message", () => {
                 "arrival": "11:00"
             },
             "1635782700000": {
-                "name": "Test",
-                "email": "test@gmail.com",
-                "netid": "test101",
+                "name": "Test2",
+                "email": "test2@gmail.com",
+                "netid": "test102",
                 "date": "2021-11-01",
                 "arrival": "11:05"
             }
@@ -74,7 +74,7 @@ describe("result message", () => {
         };
 
         const keyinsec = makekey(time, date)+Math.floor(Math.random() * 1000);
-
+        console.log("test keyinsec", keyinsec);
 
         const wrapper = shallow(<Results students={data} date={date} time={time} keyinsec={keyinsec} />);
         expect(wrapper.text()).toMatch("These Wildcats are looking to rideshare too!");

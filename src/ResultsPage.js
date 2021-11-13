@@ -33,6 +33,8 @@ export const Results = ({ students, date, time, keyinsec }) => {
     let resultMessage = "";
   // pick user arriving within 1 hr before and 2 hrs after
     if (date !== "" && time !== "" && keyinsec !== undefined) {
+        console.log("data(students)", students);
+        console.log("Object.entries(students)", Object.entries(students));
         if (Object.entries(students).filter(student => student[0] > keyinsec-3600000 && student[0] < keyinsec+7200000).length === 0) {
             resultMessage = "No matches :( Please try a different time!";       //the one is the user himself
         } else {
