@@ -53,7 +53,12 @@ describe("result message", () => {
             }
         };
 
-        const wrapper = shallow(<Results students={data} date={"2021-10-31"} time={"4:00"} />);
+        const date = "2021-10-31";
+        const time = "04:00";
+
+        const keyinsec = makeKey(time, date)+Math.floor(Math.random() * 1000);
+
+        const wrapper = shallow(<Results students={data} date={date} time={time} keyinsec={keyinsec} />);
         expect(wrapper.text()).toMatch("No matches :( Please try a different time!");
     });
 
