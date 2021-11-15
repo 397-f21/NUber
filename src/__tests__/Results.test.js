@@ -53,8 +53,8 @@ describe("result message", () => {
             }
         };
 
-        const date = "2021-10-31";
-        const time = "04:00";
+        const date = "2021-11-01";
+        const time = "7:00";
 
         const keyinsec = makeKey(time, date)+Math.floor(Math.random() * 1000);
 
