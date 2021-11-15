@@ -13,7 +13,7 @@ describe ('Button test', () => {
 
   it ('check if the button is here', () => {
     cy.visit ('/');
-    cy.get('[button-cy=button]').should('contain', 'Button');
+    cy.get('[button-cy=button]').should('contain', 'Submit');
   });
 
   it('input date', () => {

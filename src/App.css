@@ -28,10 +28,10 @@
 button {
   border-radius: 10px;
   background-color: gray;
-  color: lavender;
+  /* color: lavender; */
   border: 2px solid lavender;
-  width: 6vw;
-  height: 4vh;
+  /* width: 6vw; */
+  /* height: 4vh; */
   /* margin-top: 2%; */
 }
 
@@ -70,6 +70,12 @@ input {
 }
 
 a:hover.button {
+  color: #666666;
+  cursor: pointer;
+  background-color: #cec8ef;
+}
+
+button:hover.button {
   color: #666666;
   cursor: pointer;
   background-color: #cec8ef;

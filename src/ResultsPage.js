@@ -1,15 +1,18 @@
-import React, { useState } from 'react';
-import { InputPage, keyinsec } from './InputPage.js';
+import React from 'react';
+import { InputPage } from './InputPage.js';
 import { useData } from './utilities/firebase.js';
 
-const StudentList = ({ students }) => {
+const StudentList = ({ students, keyinsec }) => {
     return(
       <>
         {
           Object.entries(students).map(([key, value]) => {
-            if (//key !== keyinsec &&
-                key > keyinsec-3600000
-                && key < keyinsec+7200000) return <Student key={key} student={ value } /> 
+            if (key > keyinsec-3600000 && key < keyinsec+7200000) {
+                return <Student key={key} student={ value } />;
+            } else {
+                return null;
+            }
+                
           })
         }
       </>
@@ -23,14 +26,13 @@ const Student = ({ student }) => {
         </li>
 )};
   
-const Results = ({ students, date, time }) => {
-   // const currdate = new Date(date + "T" + time);
-   // const currmilsec = currdate.getTime();
+export const Results = ({ students, date, time, keyinsec }) => {
+   keyinsec = parseInt(keyinsec);
     
     let resultMessage = "";
   // pick user arriving within 1 hr before and 2 hrs after
-    if (date !== "" && time !== "") {
-        if (Object.entries(students).filter(student => student[0] > keyinsec-3600000 && student[0] < keyinsec+7200000).length === 1) {
+    if (date !== "" && time !== "" && keyinsec !== undefined) {
+        if (Object.entries(students).filter(student => parseInt(student[0]) > keyinsec-3600000 && parseInt(student[0]) < keyinsec+7200000).length === 0) {
             resultMessage = "No matches :( Please try a different time!";       //the one is the user himself
         } else {
             resultMessage = "These Wildcats are looking to rideshare too!";
@@ -41,23 +43,13 @@ const Results = ({ students, date, time }) => {
         <>
             <h2 data-testid="result-message">{resultMessage}</h2>
             <ul>
-                <StudentList students={students} />
+                <StudentList students={students} keyinsec={keyinsec} />
             </ul>
         </>
     );
 };
 
-const ResultsPage = ({navigation}) => {
-    // const [time, setTime] = useState("");
-    // const [date, setDate] = useState("");
-
-    // const changeTimeHandler = (e) => {
-    //     setTime(e.target.value);
-    // }
-
-    // const changeDateHandler = (e) => {
-    //     setDate(e.target.value);
-    // }
+const ResultsPage = ({ navigation, keyinsec }) => {
 
     const [students, loading, error] = useData('/');
     
@@ -73,8 +65,6 @@ const ResultsPage = ({navigation}) => {
     //     "time": "11:00"
     //     };
     //     set(ref(database, '/1635782400000'), data);
-
-    //     console.log("database", database);
     // };
     const { previous } = navigation;
 
@@ -86,9 +76,9 @@ const ResultsPage = ({navigation}) => {
             <input type="time" onChange={(e) => changeTimeHandler(e)} />
             <input type="date"  date-cy="date" onChange={(e) => changeDateHandler(e)} /> */}
             {/* <button type="button" button-cy="button" onClick={() => setData()}>Button</button> */}
-            <Results students={students} date={InputPage.date} time={InputPage.time} />
+            <Results students={students} date={InputPage.date} time={InputPage.time} keyinsec={keyinsec} />
 
-            <a className="button" onClick={previous}>Try a different time</a>
+            <button className="button" onClick={previous}>Try a different time</button>
         </>
     );
 };
