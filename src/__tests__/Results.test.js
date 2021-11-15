@@ -37,6 +37,21 @@ describe("result message", () => {
         expect(wrapper.text()).toMatch("No matches :( Please try a different time!");
     });
 
+    it("renders no match msg for correct date incorrect time", () => {
+        const data = {
+            "1635782400000": {
+                "name": "Test",
+                "email": "test@gmail.com",
+                "netid": "test101",
+                "date": "2021-11-01",
+                "arrival": "11:00"
+            }
+        };
+
+        const wrapper = shallow(<Results students={data} date={"2021-10-31"} time={"4:00"} />);
+        expect(wrapper.text()).toMatch("No matches :( Please try a different time!");
+    });
+
     it("renders match message of one person", () => {
         const data = {
             "1635782400000": {
