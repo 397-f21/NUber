@@ -52,11 +52,11 @@ export const InputPage = ({ navigation, setKeyinsec }) => {
             <h1>NUber</h1>
 
             <label htmlFor="fname">Full Name:</label>
-            <input type="text" id="fname" onChange={(e) => changeNameHandler(e)} />
+            <input type="text" id="fname" fname-cy="fname" onChange={(e) => changeNameHandler(e)} />
             <label htmlFor="email">Phone Number:</label>
-            <input type="email" id="email" onChange={(e) => changeEmailHandler(e)} />
+            <input type="email" id="email" phone-cy="phone" onChange={(e) => changeEmailHandler(e)} />
             <label htmlFor="netid">NetID:</label>
-            <input type="text" id="netid" onChange={(e) => changeNetidHandler(e)} />
+            <input type="text" id="netid" netid-cy="netid" onChange={(e) => changeNetidHandler(e)} />
 
             <label htmlFor="airports">Arrival Airport:</label>
             <select id="airports">
@@ -65,7 +65,7 @@ export const InputPage = ({ navigation, setKeyinsec }) => {
             </select>
 
             <h3>Enter in your arrival date and time</h3>
-            <input type="time" className="bottom" onChange={(e) => changeTimeHandler(e)} />
+            <input type="time" className="bottom" time-cy="time" onChange={(e) => changeTimeHandler(e)} />
             <input type="date" className="bottom" date-cy="date" onChange={(e) => changeDateHandler(e)} />
 
             <button className="button" button-cy="button" onClick={clickHandler}>Submit</button>
