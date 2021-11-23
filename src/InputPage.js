@@ -65,7 +65,7 @@ export const InputPage = ({ navigation, setKeyinsec }) => {
             </select>
 
             <h3>Enter in your arrival date and time</h3>
-            <input type="time" className="bottom" onChange={(e) => changeTimeHandler(e)} />
+            <input type="time" className="bottom" time-cy="time" onChange={(e) => changeTimeHandler(e)} />
             <input type="date" className="bottom" date-cy="date" onChange={(e) => changeDateHandler(e)} />
 
             <button className="button" button-cy="button" onClick={clickHandler}>Submit</button>
