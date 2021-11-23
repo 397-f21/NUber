@@ -70,7 +70,7 @@ const ResultsPage = ({ navigation, keyinsec }) => {
 
     return (
         <>
-            <h1>NUber</h1>
+            <h1 res="res">NUber Results</h1>
             
             {/* <h2>Enter in your flight arrival date and time</h2>
             <input type="time" onChange={(e) => changeTimeHandler(e)} />
