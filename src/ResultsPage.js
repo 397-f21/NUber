@@ -43,7 +43,7 @@ export const Results = ({ students, date, time, keyinsec }) => {
         <>
             <h2 data-testid="result-message">{resultMessage}</h2>
             <ul>
-                <StudentList students={students} keyinsec={keyinsec} />
+                <StudentList students={students} keyinsec={keyinsec} data-testid="student-list"/>
             </ul>
         </>
     );
